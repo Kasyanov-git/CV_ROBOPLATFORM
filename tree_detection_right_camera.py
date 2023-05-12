@@ -6,7 +6,7 @@ from ultralytics import YOLO
 
 model = YOLO('Y:/OpenCV/Keras_PRoject/runs/detect/yolov8n_tree_10ep3/weights/best.pt')
 
-cap = cv2.VideoCapture("Y:/OpenCV/vid/000_vid_cut1.mp4")
+cap = cv2.VideoCapture("Y:/OpenCV/vid/000_vid_cut.mp4")
 # cap = cv2.VideoCapture(0)
 
 
@@ -17,6 +17,7 @@ box_0, box_1, box_2 = [], [], []
 tree_pixel, prev_tree_pixel = 0, 0
 center_pixel = 0
 _, frame = cap.read()
+
 frame = cv2.resize(frame, (224, 224))
 frame = cv2.flip(frame, 1)
 old_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -54,7 +55,8 @@ while True:
     coord = old_points[0]
     
     x, y = new_points.ravel()
-    print(y)
+    # print(old_points)
+    # print(gray_frame)
     cv2.circle(frame, (int(x), int(y)), 5, (255, 0, 255), -1)
 
 
